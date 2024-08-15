@@ -12,14 +12,21 @@ class LoginCubit extends Cubit<LoginState> {
 
   final LoginUseCase loginUseCase;
 
-  login(String email, String password) async {
+  Future<String> login(String email, String password) async {
     emit(LoginState.loading());
 
     final request = await loginUseCase.login(email, password);
 
-    request.fold(
-      (l) => null,
-      (r) => emit(LoginState.loaded(r.token)),
+    return request.fold(
+      (l) {
+        emit(LoginState.initial());
+        return l.message;
+      },
+      (r) {
+        emit(LoginState.loaded(r.token));
+
+        return r.message;
+      },
     );
   }
 }

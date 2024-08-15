@@ -12,9 +12,10 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../module/data/datasource/remote/auth_remote_datasource.dart' as _i3;
-import '../module/domain/repositories/auth_repository.dart' as _i5;
-import '../module/domain/usecases/auth/login_usecase.dart' as _i4;
-import '../module/presentation/view/login/cubit/login_cubit.dart' as _i6;
+import '../module/data/repositories/auth_domain_repository_impl.dart' as _i5;
+import '../module/domain/repositories/auth_repository.dart' as _i4;
+import '../module/domain/usecases/auth/login_usecase.dart' as _i6;
+import '../module/presentation/view/login/cubit/login_cubit.dart' as _i7;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -29,9 +30,11 @@ extension GetItInjectableX on _i1.GetIt {
     );
     gh.factory<_i3.AuthRemoteDatasourceImpl>(
         () => _i3.AuthRemoteDatasourceImpl());
-    gh.factory<_i4.LoginUseCase>(
-        () => _i4.LoginUseCase(authRepository: gh<_i5.AuthRepository>()));
-    gh.factory<_i6.LoginCubit>(() => _i6.LoginCubit(gh<_i4.LoginUseCase>()));
+    gh.factory<_i4.AuthRepository>(() => _i5.AuthDomainRepositoryImpl(
+        authRemoteDatasourceImpl: gh<_i3.AuthRemoteDatasourceImpl>()));
+    gh.factory<_i6.LoginUseCase>(
+        () => _i6.LoginUseCase(authRepository: gh<_i4.AuthRepository>()));
+    gh.factory<_i7.LoginCubit>(() => _i7.LoginCubit(gh<_i6.LoginUseCase>()));
     return this;
   }
 }

@@ -22,13 +22,13 @@ class ButtonWidget extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
         color: Colors.green,
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(20),
           child: Center(
             child: Text(
               text,

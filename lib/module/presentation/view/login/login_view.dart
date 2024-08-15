@@ -1,12 +1,13 @@
 import 'package:aden_fe/core/helper/size_helper.dart';
+import 'package:aden_fe/core/helper/token_helper.dart';
 import 'package:aden_fe/di/injection.dart';
 import 'package:aden_fe/module/presentation/view/login/cubit/login_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theme/text_theme.dart';
 import '../../widget/button_widget.dart';
+import '../../widget/loading_widget.dart';
 import '../../widget/text_form_widget.dart';
 
 class LoginView extends StatelessWidget {
@@ -32,12 +33,19 @@ class LoginView extends StatelessWidget {
             orElse: () => Container(),
             initial: () => loaded(context),
             loaded: (token) => loaded(context),
+            loading: () => LoadingWidget(),
           );
         },
         listener: (context, state) {
           state.maybeWhen(
             orElse: () {},
-            loaded: (token) {},
+            loaded: (token) async {
+              await TokenHelper().setToken(token);
+
+              if (context.mounted) {
+                Navigator.pushReplacementNamed(context, '/home');
+              }
+            },
           );
         },
       ),
@@ -98,7 +106,7 @@ class LoginView extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () async {},
                         child: Text("Forgot your password?"),
                       ),
                     ),
@@ -109,11 +117,15 @@ class LoginView extends StatelessWidget {
                       height: 45,
                       width: SizeHelper.getWidth(context) * 0.9,
                       text: "Login",
-                      onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                          context,
-                          '/home',
-                          (route) => false,
+                      onTap: () async {
+                        final message = await context.read<LoginCubit>().login(
+                            _emailController.text, _passwordController.text);
+
+                        //snackbar
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(message),
+                          ),
                         );
                       },
                     ),

@@ -28,7 +28,7 @@ class AuthRemoteDatasourceImpl implements AuthRemoteDatasource {
 
     final request = await http
         .post(
-          ApiHelper.auth,
+          ApiHelper.login,
           body: body,
           headers: ApiHelper.getHeaderPost('-'),
         )

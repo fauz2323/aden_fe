@@ -19,10 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Makanan',
       theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 49, 191, 36)),
         useMaterial3: true,
-        scaffoldBackgroundColor: const Color.fromARGB(255, 228, 226, 226),
         textTheme: GoogleFonts.robotoTextTheme(),
       ),
       routes: RouteHelper.routes,

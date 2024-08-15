@@ -1,3 +1,4 @@
+import 'package:aden_fe/module/presentation/view/home/home_view.dart';
 import 'package:aden_fe/module/presentation/view/register/register_view.dart';
 import 'package:flutter/widgets.dart';
 
@@ -9,6 +10,6 @@ class RouteHelper {
     '/': (context) => const SplashView(),
     '/login': (context) => LoginView(),
     '/register': (context) => RegisterView(),
-    '/home': (context) => LoginView(),
+    '/home': (context) => HomeView(),
   };
 }

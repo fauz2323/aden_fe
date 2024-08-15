@@ -2,6 +2,7 @@
 //
 //     final loginModel = loginModelFromJson(jsonString);
 
+import 'package:aden_fe/module/domain/entities/login_entities.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'dart:convert';
 
@@ -28,4 +29,6 @@ class LoginModel {
       _$LoginModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginModelToJson(this);
+
+  LoginEntity toEntity() => LoginEntity(message: message, token: token);
 }
