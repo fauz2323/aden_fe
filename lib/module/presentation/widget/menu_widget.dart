@@ -20,28 +20,31 @@ class MenuProfileWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
-      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.green.withOpacity(0.1),
         borderRadius: BorderRadius.circular(15),
       ),
       width: SizeHelper.getWidth(context) * 0.9,
       child: InkWell(
+        borderRadius: BorderRadius.circular(15),
         onTap: onTap,
-        child: Row(
-          children: [
-            icon,
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              title,
-              style:
-                  TextThemes.h5.merge(TextStyle(fontWeight: FontWeight.w500)),
-            ),
-            Spacer(),
-            Iconify(Mdi.chevron_right),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              icon,
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                title,
+                style:
+                    TextThemes.h5.merge(TextStyle(fontWeight: FontWeight.w500)),
+              ),
+              Spacer(),
+              Iconify(Mdi.chevron_right),
+            ],
+          ),
         ),
       ),
     );

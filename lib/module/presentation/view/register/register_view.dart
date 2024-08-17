@@ -1,4 +1,6 @@
 import 'package:aden_fe/core/helper/token_helper.dart';
+import 'package:aden_fe/di/injection.dart';
+import 'package:aden_fe/module/presentation/widget/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +21,7 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegisterCubit(),
+      create: (context) => getIt<RegisterCubit>(),
       child: Builder(
         builder: (context) => _build(context),
       ),
@@ -45,6 +47,7 @@ class RegisterView extends StatelessWidget {
             orElse: () => Container(),
             initial: () => loaded(context),
             loaded: (value) => loaded(context),
+            loading: () => LoadingWidget(),
           );
         },
       ),
@@ -119,7 +122,22 @@ class RegisterView extends StatelessWidget {
                       height: 45,
                       width: SizeHelper.getWidth(context) * 0.9,
                       text: "Register",
-                      onTap: () {},
+                      onTap: () async {
+                        final message =
+                            await context.read<RegisterCubit>().register(
+                                  _emailController.text,
+                                  _passwordController.text,
+                                  _nameController.text,
+                                  _phoneController.text,
+                                );
+
+                        //snackbar
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(message),
+                          ),
+                        );
+                      },
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

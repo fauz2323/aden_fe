@@ -1,8 +1,13 @@
+import 'package:aden_fe/core/helper/token_helper.dart';
 import 'package:aden_fe/core/theme/text_theme.dart';
+import 'package:aden_fe/di/injection.dart';
+import 'package:aden_fe/module/domain/entities/list_category_entities.dart';
+import 'package:aden_fe/module/domain/entities/list_food_entities.dart';
+import 'package:aden_fe/module/presentation/view/home_screen/cubit/home_screen_cubit.dart';
 import 'package:aden_fe/module/presentation/widget/button_widget.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:aden_fe/module/presentation/widget/loading_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/mdi.dart';
 
@@ -15,6 +20,40 @@ class HomeScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<HomeScreenCubit>()..initial(),
+      child: Builder(
+        builder: (context) => _build(context),
+      ),
+    );
+  }
+
+  Widget _build(BuildContext context) {
+    return Scaffold(
+      body: BlocConsumer<HomeScreenCubit, HomeScreenState>(
+        listener: (context, state) {
+          state.maybeWhen(
+            orElse: () {},
+            unauthorized: () async {
+              await TokenHelper().deleteAllToken();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/login', (Route<dynamic> route) => false);
+            },
+          );
+        },
+        builder: (context, state) {
+          return state.maybeWhen(
+            orElse: () => Container(),
+            loaded: (foodData, catData) => loaded(context, catData, foodData),
+            loading: () => LoadingWidget(),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget loaded(BuildContext context, ListCategoryEntities categoryEntities,
+      ListFoodEntities food) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -119,14 +158,15 @@ class HomeScreenView extends StatelessWidget {
                 height: 110,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    MenuCatWidget(),
-                    MenuCatWidget(),
-                    MenuCatWidget(),
-                    MenuCatWidget(),
-                    MenuCatWidget(),
-                    MenuCatWidget(),
-                  ],
+                  children: categoryEntities.listCategoryEntities
+                      .map(
+                        (e) => MenuCatWidget(
+                          title: e.name,
+                          url:
+                              "https://w7.pngwing.com/pngs/569/742/png-transparent-soft-drink-orange-juice-orange-drink-summer-lemon-cold-drink-food-orange-happy-birthday-vector-images.png",
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
               SizedBox(
@@ -140,14 +180,17 @@ class HomeScreenView extends StatelessWidget {
                 height: SizeHelper.getHeight(context) * 0.3,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    HorizontalCardWidget(),
-                    HorizontalCardWidget(),
-                    HorizontalCardWidget(),
-                    HorizontalCardWidget(),
-                    HorizontalCardWidget(),
-                    HorizontalCardWidget(),
-                  ],
+                  children: (food.listFood..shuffle())
+                      .take(5)
+                      .map(
+                        (e) => HorizontalCardWidget(
+                          title: e.name,
+                          price: e.price,
+                          image: e.image,
+                          uuid: e.uuid,
+                        ),
+                      )
+                      .toList(),
                 ),
               )
             ],

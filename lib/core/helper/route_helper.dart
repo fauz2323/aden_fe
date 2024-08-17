@@ -1,3 +1,4 @@
+import 'package:aden_fe/module/presentation/view/food_detail/food_detail_view.dart';
 import 'package:aden_fe/module/presentation/view/home/home_view.dart';
 import 'package:aden_fe/module/presentation/view/register/register_view.dart';
 import 'package:flutter/widgets.dart';
@@ -11,5 +12,6 @@ class RouteHelper {
     '/login': (context) => LoginView(),
     '/register': (context) => RegisterView(),
     '/home': (context) => HomeView(),
+    '/food-detail': (context) => const FoodDetailView(),
   };
 }

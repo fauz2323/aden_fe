@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/helper/size_helper.dart';
@@ -6,7 +7,11 @@ import '../../../core/theme/text_theme.dart';
 class MenuCatWidget extends StatelessWidget {
   const MenuCatWidget({
     super.key,
+    required this.title,
+    required this.url,
   });
+  final String title;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +26,23 @@ class MenuCatWidget extends StatelessWidget {
               width: 4,
             ),
             borderRadius: BorderRadius.circular(50),
-            image: DecorationImage(
-              image: Image.asset('assets/images/cat.png').image,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: CachedNetworkImage(
+              imageUrl: url,
               fit: BoxFit.cover,
             ),
           ),
         ),
         SizedBox(
           width: SizeHelper.getWidth(context) * 0.3,
-          child: Text(
-            "Minuman Soda",
-            overflow: TextOverflow.ellipsis,
-            style: TextThemes.h5.merge(TextStyle(color: Colors.green)),
+          child: Center(
+            child: Text(
+              title,
+              overflow: TextOverflow.ellipsis,
+              style: TextThemes.h5.merge(TextStyle(color: Colors.green)),
+            ),
           ),
         )
       ],

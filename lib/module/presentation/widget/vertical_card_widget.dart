@@ -6,40 +6,53 @@ import '../../../core/theme/text_theme.dart';
 class VerticalCardWidget extends StatelessWidget {
   const VerticalCardWidget({
     super.key,
+    required this.title,
+    required this.uuid,
+    required this.image,
+    required this.price,
   });
+  final String title;
+  final String uuid;
+  final String image;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image.asset(
-              'assets/images/makanan-1.jpeg',
-              height: SizeHelper.getWidth(context) * 0.4,
-              width: SizeHelper.getWidth(context) * 0.4,
-              fit: BoxFit.cover,
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            "Nasi Goreng",
-            style: TextThemes.spanBold,
-          ),
-          Text(
-            "Rp. 15.000",
-            style: TextThemes.spanBold.merge(
-              TextStyle(
-                color: Colors.green,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/food-detail', arguments: uuid);
+      },
+      child: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Image.asset(
+                'assets/images/makanan-1.jpeg',
+                height: SizeHelper.getWidth(context) * 0.4,
+                width: SizeHelper.getWidth(context) * 0.4,
+                fit: BoxFit.cover,
               ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              title,
+              style: TextThemes.spanBold,
+            ),
+            Text(
+              "Rp. " + price.toString(),
+              style: TextThemes.spanBold.merge(
+                TextStyle(
+                  color: Colors.green,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

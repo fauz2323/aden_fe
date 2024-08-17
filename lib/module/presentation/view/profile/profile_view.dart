@@ -74,7 +74,7 @@ class ProfileView extends StatelessWidget {
                     await TokenHelper().deleteAllToken();
 
                     if (!context.mounted) return;
-                    Navigator.pushReplacementNamed(context, 'login');
+                    Navigator.pushReplacementNamed(context, '/login');
                   },
                 )
               ],
