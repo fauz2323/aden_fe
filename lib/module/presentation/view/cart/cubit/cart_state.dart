@@ -8,4 +8,5 @@ class CartState with _$CartState {
   const factory CartState.loaded(UserCartEntities userCart, int total) =
       _Loaded;
   const factory CartState.unauthorized() = _Unauthorized;
+  const factory CartState.payment() = _Payment;
 }

@@ -4,6 +4,7 @@ import 'package:aden_fe/module/presentation/view/register/register_view.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../module/presentation/view/login/login_view.dart';
+import '../../module/presentation/view/payment/payment_view.dart';
 import '../../module/presentation/view/splash/splash_view.dart';
 
 class RouteHelper {
@@ -13,5 +14,6 @@ class RouteHelper {
     '/register': (context) => RegisterView(),
     '/home': (context) => HomeView(),
     '/food-detail': (context) => const FoodDetailView(),
+    '/payment': (context) => const PaymenView(),
   };
 }

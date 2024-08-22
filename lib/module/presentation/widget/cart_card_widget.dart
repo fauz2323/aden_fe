@@ -67,7 +67,7 @@ class CartCardWidget extends StatelessWidget {
                     width: 30,
                   ),
                   Text(
-                    "Rp. " + (price).toString(),
+                    "Rp. " + price.toString(),
                     style: TextThemes.h5.merge(TextStyle(
                         color: Colors.green, fontWeight: FontWeight.w600)),
                   )

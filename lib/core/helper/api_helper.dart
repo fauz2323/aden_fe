@@ -1,7 +1,7 @@
 import 'package:http/http.dart';
 
 class ApiHelper {
-  static String baseUrl = "http://3m3aqx6vaf.sharedwithexpose.com";
+  static String baseUrl = "https://pfyo8aypph.sharedwithexpose.com";
   static String apiVer = '/api/v1';
 
   static Uri login = Uri.parse("$baseUrl$apiVer/login");
@@ -12,6 +12,7 @@ class ApiHelper {
   static Uri getFoodUuid = Uri.parse("$baseUrl$apiVer/food/uuid");
   static Uri addToCart = Uri.parse("$baseUrl$apiVer/add/to/cart");
   static Uri getCart = Uri.parse("$baseUrl$apiVer/get/cart");
+  static Uri makeOrder = Uri.parse("$baseUrl$apiVer/set/order");
 
   static getHeaderGet(var token) {
     Map<String, String> data = {

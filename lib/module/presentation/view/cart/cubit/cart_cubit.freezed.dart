@@ -23,6 +23,7 @@ mixin _$CartState {
     required TResult Function(String message) error,
     required TResult Function(UserCartEntities userCart, int total) loaded,
     required TResult Function() unauthorized,
+    required TResult Function() payment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$CartState {
     TResult? Function(String message)? error,
     TResult? Function(UserCartEntities userCart, int total)? loaded,
     TResult? Function()? unauthorized,
+    TResult? Function()? payment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$CartState {
     TResult Function(String message)? error,
     TResult Function(UserCartEntities userCart, int total)? loaded,
     TResult Function()? unauthorized,
+    TResult Function()? payment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$CartState {
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Payment value) payment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$CartState {
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Payment value)? payment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$CartState {
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Payment value)? payment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,6 +140,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(String message) error,
     required TResult Function(UserCartEntities userCart, int total) loaded,
     required TResult Function() unauthorized,
+    required TResult Function() payment,
   }) {
     return initial();
   }
@@ -146,6 +153,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(String message)? error,
     TResult? Function(UserCartEntities userCart, int total)? loaded,
     TResult? Function()? unauthorized,
+    TResult? Function()? payment,
   }) {
     return initial?.call();
   }
@@ -158,6 +166,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(String message)? error,
     TResult Function(UserCartEntities userCart, int total)? loaded,
     TResult Function()? unauthorized,
+    TResult Function()? payment,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -174,6 +183,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Payment value) payment,
   }) {
     return initial(this);
   }
@@ -186,6 +196,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Payment value)? payment,
   }) {
     return initial?.call(this);
   }
@@ -198,6 +209,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Payment value)? payment,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -254,6 +266,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(String message) error,
     required TResult Function(UserCartEntities userCart, int total) loaded,
     required TResult Function() unauthorized,
+    required TResult Function() payment,
   }) {
     return loading();
   }
@@ -266,6 +279,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(String message)? error,
     TResult? Function(UserCartEntities userCart, int total)? loaded,
     TResult? Function()? unauthorized,
+    TResult? Function()? payment,
   }) {
     return loading?.call();
   }
@@ -278,6 +292,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(String message)? error,
     TResult Function(UserCartEntities userCart, int total)? loaded,
     TResult Function()? unauthorized,
+    TResult Function()? payment,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -294,6 +309,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Payment value) payment,
   }) {
     return loading(this);
   }
@@ -306,6 +322,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Payment value)? payment,
   }) {
     return loading?.call(this);
   }
@@ -318,6 +335,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Payment value)? payment,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -400,6 +418,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(String message) error,
     required TResult Function(UserCartEntities userCart, int total) loaded,
     required TResult Function() unauthorized,
+    required TResult Function() payment,
   }) {
     return error(message);
   }
@@ -412,6 +431,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(String message)? error,
     TResult? Function(UserCartEntities userCart, int total)? loaded,
     TResult? Function()? unauthorized,
+    TResult? Function()? payment,
   }) {
     return error?.call(message);
   }
@@ -424,6 +444,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(String message)? error,
     TResult Function(UserCartEntities userCart, int total)? loaded,
     TResult Function()? unauthorized,
+    TResult Function()? payment,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -440,6 +461,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Payment value) payment,
   }) {
     return error(this);
   }
@@ -452,6 +474,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Payment value)? payment,
   }) {
     return error?.call(this);
   }
@@ -464,6 +487,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Payment value)? payment,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -560,6 +584,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(String message) error,
     required TResult Function(UserCartEntities userCart, int total) loaded,
     required TResult Function() unauthorized,
+    required TResult Function() payment,
   }) {
     return loaded(userCart, total);
   }
@@ -572,6 +597,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(String message)? error,
     TResult? Function(UserCartEntities userCart, int total)? loaded,
     TResult? Function()? unauthorized,
+    TResult? Function()? payment,
   }) {
     return loaded?.call(userCart, total);
   }
@@ -584,6 +610,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(String message)? error,
     TResult Function(UserCartEntities userCart, int total)? loaded,
     TResult Function()? unauthorized,
+    TResult Function()? payment,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -600,6 +627,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Payment value) payment,
   }) {
     return loaded(this);
   }
@@ -612,6 +640,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Payment value)? payment,
   }) {
     return loaded?.call(this);
   }
@@ -624,6 +653,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Payment value)? payment,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -687,6 +717,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
     required TResult Function(String message) error,
     required TResult Function(UserCartEntities userCart, int total) loaded,
     required TResult Function() unauthorized,
+    required TResult Function() payment,
   }) {
     return unauthorized();
   }
@@ -699,6 +730,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
     TResult? Function(String message)? error,
     TResult? Function(UserCartEntities userCart, int total)? loaded,
     TResult? Function()? unauthorized,
+    TResult? Function()? payment,
   }) {
     return unauthorized?.call();
   }
@@ -711,6 +743,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
     TResult Function(String message)? error,
     TResult Function(UserCartEntities userCart, int total)? loaded,
     TResult Function()? unauthorized,
+    TResult Function()? payment,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -727,6 +760,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
     required TResult Function(_Error value) error,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Payment value) payment,
   }) {
     return unauthorized(this);
   }
@@ -739,6 +773,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
     TResult? Function(_Error value)? error,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Payment value)? payment,
   }) {
     return unauthorized?.call(this);
   }
@@ -751,6 +786,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
     TResult Function(_Error value)? error,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Payment value)? payment,
     required TResult orElse(),
   }) {
     if (unauthorized != null) {
@@ -762,4 +798,130 @@ class _$UnauthorizedImpl implements _Unauthorized {
 
 abstract class _Unauthorized implements CartState {
   const factory _Unauthorized() = _$UnauthorizedImpl;
+}
+
+/// @nodoc
+abstract class _$$PaymentImplCopyWith<$Res> {
+  factory _$$PaymentImplCopyWith(
+          _$PaymentImpl value, $Res Function(_$PaymentImpl) then) =
+      __$$PaymentImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$PaymentImplCopyWithImpl<$Res>
+    extends _$CartStateCopyWithImpl<$Res, _$PaymentImpl>
+    implements _$$PaymentImplCopyWith<$Res> {
+  __$$PaymentImplCopyWithImpl(
+      _$PaymentImpl _value, $Res Function(_$PaymentImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$PaymentImpl implements _Payment {
+  const _$PaymentImpl();
+
+  @override
+  String toString() {
+    return 'CartState.payment()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$PaymentImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(String message) error,
+    required TResult Function(UserCartEntities userCart, int total) loaded,
+    required TResult Function() unauthorized,
+    required TResult Function() payment,
+  }) {
+    return payment();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(String message)? error,
+    TResult? Function(UserCartEntities userCart, int total)? loaded,
+    TResult? Function()? unauthorized,
+    TResult? Function()? payment,
+  }) {
+    return payment?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(String message)? error,
+    TResult Function(UserCartEntities userCart, int total)? loaded,
+    TResult Function()? unauthorized,
+    TResult Function()? payment,
+    required TResult orElse(),
+  }) {
+    if (payment != null) {
+      return payment();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Error value) error,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Unauthorized value) unauthorized,
+    required TResult Function(_Payment value) payment,
+  }) {
+    return payment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Unauthorized value)? unauthorized,
+    TResult? Function(_Payment value)? payment,
+  }) {
+    return payment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Error value)? error,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Unauthorized value)? unauthorized,
+    TResult Function(_Payment value)? payment,
+    required TResult orElse(),
+  }) {
+    if (payment != null) {
+      return payment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Payment implements CartState {
+  const factory _Payment() = _$PaymentImpl;
 }

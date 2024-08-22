@@ -48,6 +48,7 @@ class CartView extends StatelessWidget {
               Navigator.pushNamedAndRemoveUntil(
                   context, '/login', (route) => false);
             },
+            payment: () => Navigator.pushNamed(context, '/payment'),
           );
         },
         builder: (context, state) {
@@ -128,8 +129,7 @@ class CartView extends StatelessWidget {
               itemBuilder: (context, index) => CartCardWidget(
                 image: data.items[index].image,
                 name: data.items[index].name,
-                price: (data.items[index].price / data.items[index].quantity)
-                    .toInt(),
+                price: (data.items[index].price).toInt(),
                 quantity: data.items[index].quantity,
               ),
             ),
@@ -148,7 +148,15 @@ class CartView extends StatelessWidget {
             text: "Checkout",
             width: SizeHelper.getWidth(context) * 0.9,
             height: 50,
-            onTap: () {},
+            onTap: () async {
+              final message = await context.read<CartCubit>().makeOrder();
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(message),
+                ),
+              );
+            },
           ),
         ],
       ),

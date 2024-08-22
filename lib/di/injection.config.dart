@@ -27,9 +27,10 @@ import '../module/domain/usecases/food/list_category_usecase.dart' as _i12;
 import '../module/domain/usecases/food/list_food_usecase.dart' as _i13;
 import '../module/domain/usecases/order/add_cart_usecase.dart' as _i21;
 import '../module/domain/usecases/order/get_cart_usecase.dart' as _i22;
-import '../module/presentation/view/cart/cubit/cart_cubit.dart' as _i24;
+import '../module/domain/usecases/order/make_order_usecase.dart' as _i23;
+import '../module/presentation/view/cart/cubit/cart_cubit.dart' as _i25;
 import '../module/presentation/view/food_detail/cubit/food_detail_cubit.dart'
-    as _i23;
+    as _i24;
 import '../module/presentation/view/food_menu/cubit/food_menu_cubit.dart'
     as _i20;
 import '../module/presentation/view/home_screen/cubit/home_screen_cubit.dart'
@@ -83,11 +84,16 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i21.AddCartUseCase(orderRepository: gh<_i17.OrderRepository>()));
     gh.factory<_i22.GetCartUseCase>(
         () => _i22.GetCartUseCase(gh<_i17.OrderRepository>()));
-    gh.factory<_i23.FoodDetailCubit>(() => _i23.FoodDetailCubit(
+    gh.factory<_i23.MakeOrderUsecase>(
+        () => _i23.MakeOrderUsecase(gh<_i17.OrderRepository>()));
+    gh.factory<_i24.FoodDetailCubit>(() => _i24.FoodDetailCubit(
           gh<_i14.FoodUuidUseCase>(),
           gh<_i21.AddCartUseCase>(),
         ));
-    gh.factory<_i24.CartCubit>(() => _i24.CartCubit(gh<_i22.GetCartUseCase>()));
+    gh.factory<_i25.CartCubit>(() => _i25.CartCubit(
+          gh<_i22.GetCartUseCase>(),
+          gh<_i23.MakeOrderUsecase>(),
+        ));
     return this;
   }
 }

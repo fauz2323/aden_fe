@@ -8,6 +8,7 @@ class UserCartEntities {
 class UserCartItemsEntities {
   final String name;
   final int price;
+  final int total;
   final String image;
   final int quantity;
   final String uuid;
@@ -15,6 +16,7 @@ class UserCartItemsEntities {
   UserCartItemsEntities(
       {required this.name,
       required this.price,
+      required this.total,
       required this.image,
       required this.quantity,
       required this.uuid});
