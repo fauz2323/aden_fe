@@ -163,7 +163,9 @@ class HomeScreenView extends StatelessWidget {
                         (e) => MenuCatWidget(
                           title: e.name,
                           url:
-                              "https://w7.pngwing.com/pngs/569/742/png-transparent-soft-drink-orange-juice-orange-drink-summer-lemon-cold-drink-food-orange-happy-birthday-vector-images.png",
+                              "https://firebasestorage.googleapis.com/v0/b/aden-ab505.appspot.com/o/" +
+                                  e.icon +
+                                  "?alt=media",
                         ),
                       )
                       .toList(),

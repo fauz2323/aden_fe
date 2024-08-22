@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/helper/size_helper.dart';
@@ -31,8 +32,11 @@ class HorizontalCardWidget extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.asset(
-                'assets/images/makanan-1.jpeg',
+              child: CachedNetworkImage(
+                imageUrl:
+                    "https://firebasestorage.googleapis.com/v0/b/aden-ab505.appspot.com/o/" +
+                        image +
+                        "?alt=media",
                 height: SizeHelper.getHeight(context) * 0.22,
                 width: SizeHelper.getWidth(context) * 0.35,
                 fit: BoxFit.cover,

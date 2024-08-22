@@ -73,7 +73,9 @@ class FoodDetailView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   child: CachedNetworkImage(
                     imageUrl:
-                        'https://bnp.jambiprov.go.id/wp-content/uploads/2023/05/cara-menghitung-kalori-makanan.png',
+                        "https://firebasestorage.googleapis.com/v0/b/aden-ab505.appspot.com/o/" +
+                            data.image +
+                            "?alt=media",
                     height: SizeHelper.getHeight(context) * 0.3,
                     width: SizeHelper.getWidth(context) * 0.9,
                     fit: BoxFit.cover,

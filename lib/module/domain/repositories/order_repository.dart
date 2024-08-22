@@ -1,4 +1,5 @@
 import 'package:aden_fe/module/domain/entities/add_cart_entities.dart';
+import 'package:aden_fe/module/domain/entities/make_payment_entities.dart';
 import 'package:aden_fe/module/domain/entities/order_entities.dart';
 import 'package:aden_fe/module/domain/entities/user_cart_entities.dart';
 import 'package:dartz/dartz.dart';
@@ -10,4 +11,5 @@ abstract class OrderRepository {
       String token, String uuid, String quantity);
   Future<Either<Failure, UserCartEntities>> getCart(String token);
   Future<Either<Failure, OrderEntitites>> makeOrder(String token);
+  Future<Either<Failure, MakePaymentEntities>> makePayment(String token);
 }
