@@ -30,6 +30,7 @@ import '../module/domain/usecases/order/get_cart_usecase.dart' as _i22;
 import '../module/domain/usecases/order/get_detail_order_usecase.dart' as _i25;
 import '../module/domain/usecases/order/make_order_usecase.dart' as _i23;
 import '../module/domain/usecases/order/make_payment_usecase.dart' as _i24;
+import '../module/presentation/view/cart/cubit/cart_cubit.dart' as _i28;
 import '../module/presentation/view/food_detail/cubit/food_detail_cubit.dart'
     as _i26;
 import '../module/presentation/view/food_menu/cubit/food_menu_cubit.dart'
@@ -99,6 +100,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i27.PaymentCubit>(() => _i27.PaymentCubit(
           gh<_i25.GetDetailOrderUseCase>(),
           gh<_i24.MakePaymentUsecase>(),
+        ));
+    gh.factory<_i28.CartCubit>(() => _i28.CartCubit(
+          gh<_i22.GetCartUseCase>(),
+          gh<_i23.MakeOrderUsecase>(),
         ));
     return this;
   }

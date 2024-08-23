@@ -60,6 +60,7 @@ class OrderDomainRepositoryImpl implements OrderRepository {
             date: r.order.createdAt,
             message: r.message,
             total: r.order.totalPrice,
+            id: r.order.id,
             status: r.order.status);
 
         return Right(orderEntitites);

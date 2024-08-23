@@ -45,7 +45,7 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
-  Future<List> makeOrder() async {
+  Future<Map> makeOrder() async {
     emit(CartState.loading());
     final result = await makeOrderUsecase.call(token);
     return result.fold(
@@ -60,7 +60,7 @@ class CartCubit extends Cubit<CartState> {
       },
       (r) {
         emit(CartState.payment());
-        return {"message": r.message, "code": r.};
+        return {"message": r.message, "code": r.id};
       },
     );
   }

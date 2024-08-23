@@ -153,10 +153,11 @@ class CartView extends StatelessWidget {
 
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(message.),
+                  content: Text(message['message']),
                 ),
               );
-              // Navigator.pushNamed(context, "/payment");
+              Navigator.pushNamed(context, "/payment",
+                  arguments: message['id'].toString());
             },
           ),
         ],
