@@ -21,7 +21,8 @@ mixin _$PaymentState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() loaded,
+    required TResult Function(GetOrderDetailEntities getOrderDetailEntities)
+        loaded,
     required TResult Function() unauthorized,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +31,7 @@ mixin _$PaymentState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? loaded,
+    TResult? Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult? Function()? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +40,7 @@ mixin _$PaymentState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? loaded,
+    TResult Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) =>
@@ -133,7 +134,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() loaded,
+    required TResult Function(GetOrderDetailEntities getOrderDetailEntities)
+        loaded,
     required TResult Function() unauthorized,
   }) {
     return initial();
@@ -145,7 +147,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? loaded,
+    TResult? Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult? Function()? unauthorized,
   }) {
     return initial?.call();
@@ -157,7 +159,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? loaded,
+    TResult Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {
@@ -253,7 +255,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() loaded,
+    required TResult Function(GetOrderDetailEntities getOrderDetailEntities)
+        loaded,
     required TResult Function() unauthorized,
   }) {
     return loading();
@@ -265,7 +268,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? loaded,
+    TResult? Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult? Function()? unauthorized,
   }) {
     return loading?.call();
@@ -277,7 +280,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? loaded,
+    TResult Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {
@@ -373,7 +376,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() loaded,
+    required TResult Function(GetOrderDetailEntities getOrderDetailEntities)
+        loaded,
     required TResult Function() unauthorized,
   }) {
     return error();
@@ -385,7 +389,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? loaded,
+    TResult? Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult? Function()? unauthorized,
   }) {
     return error?.call();
@@ -397,7 +401,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? loaded,
+    TResult Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {
@@ -457,6 +461,8 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   factory _$$LoadedImplCopyWith(
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({GetOrderDetailEntities getOrderDetailEntities});
 }
 
 /// @nodoc
@@ -466,26 +472,51 @@ class __$$LoadedImplCopyWithImpl<$Res>
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? getOrderDetailEntities = null,
+  }) {
+    return _then(_$LoadedImpl(
+      null == getOrderDetailEntities
+          ? _value.getOrderDetailEntities
+          : getOrderDetailEntities // ignore: cast_nullable_to_non_nullable
+              as GetOrderDetailEntities,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl();
+  const _$LoadedImpl(this.getOrderDetailEntities);
+
+  @override
+  final GetOrderDetailEntities getOrderDetailEntities;
 
   @override
   String toString() {
-    return 'PaymentState.loaded()';
+    return 'PaymentState.loaded(getOrderDetailEntities: $getOrderDetailEntities)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedImpl &&
+            (identical(other.getOrderDetailEntities, getOrderDetailEntities) ||
+                other.getOrderDetailEntities == getOrderDetailEntities));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, getOrderDetailEntities);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -493,10 +524,11 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() loaded,
+    required TResult Function(GetOrderDetailEntities getOrderDetailEntities)
+        loaded,
     required TResult Function() unauthorized,
   }) {
-    return loaded();
+    return loaded(getOrderDetailEntities);
   }
 
   @override
@@ -505,10 +537,10 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? loaded,
+    TResult? Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult? Function()? unauthorized,
   }) {
-    return loaded?.call();
+    return loaded?.call(getOrderDetailEntities);
   }
 
   @override
@@ -517,12 +549,12 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? loaded,
+    TResult Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(getOrderDetailEntities);
     }
     return orElse();
   }
@@ -569,7 +601,13 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements PaymentState {
-  const factory _Loaded() = _$LoadedImpl;
+  const factory _Loaded(final GetOrderDetailEntities getOrderDetailEntities) =
+      _$LoadedImpl;
+
+  GetOrderDetailEntities get getOrderDetailEntities;
+  @JsonKey(ignore: true)
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -613,7 +651,8 @@ class _$UnauthorizedImpl implements _Unauthorized {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function() loaded,
+    required TResult Function(GetOrderDetailEntities getOrderDetailEntities)
+        loaded,
     required TResult Function() unauthorized,
   }) {
     return unauthorized();
@@ -625,7 +664,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function()? loaded,
+    TResult? Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult? Function()? unauthorized,
   }) {
     return unauthorized?.call();
@@ -637,7 +676,7 @@ class _$UnauthorizedImpl implements _Unauthorized {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function()? loaded,
+    TResult Function(GetOrderDetailEntities getOrderDetailEntities)? loaded,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {

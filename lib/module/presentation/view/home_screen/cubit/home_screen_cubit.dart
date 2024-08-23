@@ -34,7 +34,13 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
     final request1 = await listCategoryUseCase.call(token);
 
     request1.fold(
-      (l) => emit(HomeScreenState.error(l.message)),
+      (l) {
+        if (l.code == 401) {
+          return emit(HomeScreenState.unauthorized());
+        }
+
+        emit(HomeScreenState.error(l.message));
+      },
       (r) async {
         final request2 = await listFoodUseCase.call(token);
 
@@ -42,6 +48,7 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
 
         request2.fold(
           (l) {
+            print('code error' + l.code.toString());
             if (l.code == 401) {
               return emit(HomeScreenState.unauthorized());
             }
@@ -49,6 +56,8 @@ class HomeScreenCubit extends Cubit<HomeScreenState> {
             emit(HomeScreenState.error(l.message));
           },
           (r) async {
+            print('data' + r.message);
+
             listFood = r;
             emit(HomeScreenState.loaded(listFood, listCategory));
           },

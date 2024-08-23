@@ -36,8 +36,8 @@ class HomeScreenView extends StatelessWidget {
             orElse: () {},
             unauthorized: () async {
               await TokenHelper().deleteAllToken();
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/login', (Route<dynamic> route) => false);
+              if (!context.mounted) return;
+              Navigator.pushReplacementNamed(context, '/login');
             },
           );
         },

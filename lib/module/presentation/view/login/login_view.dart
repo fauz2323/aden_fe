@@ -43,7 +43,8 @@ class LoginView extends StatelessWidget {
               await TokenHelper().setToken(token);
 
               if (context.mounted) {
-                Navigator.pushReplacementNamed(context, '/home');
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/home', (route) => false);
               }
             },
           );

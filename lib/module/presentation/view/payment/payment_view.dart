@@ -1,4 +1,5 @@
 import 'package:aden_fe/core/helper/size_helper.dart';
+import 'package:aden_fe/di/injection.dart';
 import 'package:aden_fe/module/presentation/view/payment/cubit/payment_cubit.dart';
 import 'package:aden_fe/module/presentation/widget/button_widget.dart';
 import 'package:aden_fe/module/presentation/widget/loading_widget.dart';
@@ -14,8 +15,10 @@ class PaymenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final argument = ModalRoute.of(context)!.settings.arguments as String;
+
     return BlocProvider(
-      create: (context) => PaymentCubit(),
+      create: (context) => getIt<PaymentCubit>()..initial(argument),
       child: Builder(
         builder: (context) => _build(context),
       ),
@@ -36,7 +39,7 @@ class PaymenView extends StatelessWidget {
           return state.maybeWhen(
             orElse: () => Container(),
             loading: () => LoadingWidget(),
-            loaded: () => _loaded(context),
+            loaded: (data) => _loaded(context),
             initial: () => _loaded(context),
           );
         },

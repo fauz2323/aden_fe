@@ -149,14 +149,14 @@ class CartView extends StatelessWidget {
             width: SizeHelper.getWidth(context) * 0.9,
             height: 50,
             onTap: () async {
-              // final message = await context.read<CartCubit>().makeOrder();
+              final message = await context.read<CartCubit>().makeOrder();
 
-              // ScaffoldMessenger.of(context).showSnackBar(
-              //   SnackBar(
-              //     content: Text(message),
-              //   ),
-              // );
-              Navigator.pushNamed(context, "/payment");
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(message.),
+                ),
+              );
+              // Navigator.pushNamed(context, "/payment");
             },
           ),
         ],

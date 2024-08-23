@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:aden_fe/module/domain/entities/user_cart_entities.dart';
 import 'package:aden_fe/module/domain/usecases/order/get_cart_usecase.dart';
 import 'package:aden_fe/module/domain/usecases/order/make_order_usecase.dart';
@@ -43,7 +45,7 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
-  Future<String> makeOrder() async {
+  Future<List> makeOrder() async {
     emit(CartState.loading());
     final result = await makeOrderUsecase.call(token);
     return result.fold(
@@ -51,14 +53,14 @@ class CartCubit extends Cubit<CartState> {
         print(l.code);
         if (l.code == 401) {
           emit(CartState.unauthorized());
-          return "UnAuthorized";
+          return {"message": l.message, "code": l.code};
         }
         emit(CartState.loaded(userCart, total));
-        return l.message;
+        return {"message": l.message, "code": l.code};
       },
       (r) {
         emit(CartState.payment());
-        return r.message;
+        return {"message": r.message, "code": r.};
       },
     );
   }

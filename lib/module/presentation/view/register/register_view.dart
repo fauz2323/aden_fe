@@ -37,7 +37,8 @@ class RegisterView extends StatelessWidget {
             loaded: (value) async {
               await TokenHelper().setToken(value);
               if (context.mounted) {
-                Navigator.pushReplacementNamed(context, '/home');
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/home', (route) => false);
               }
             },
           );
@@ -115,9 +116,7 @@ class RegisterView extends StatelessWidget {
                       hintText: "Your Password...",
                       isSecure: true,
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
+                    Spacer(),
                     ButtonWidget(
                       height: 45,
                       width: SizeHelper.getWidth(context) * 0.9,
