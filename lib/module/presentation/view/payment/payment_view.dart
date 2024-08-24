@@ -1,5 +1,7 @@
 import 'package:aden_fe/core/helper/size_helper.dart';
 import 'package:aden_fe/di/injection.dart';
+import 'package:aden_fe/module/domain/entities/get_order_Detail_entities.dart';
+import 'package:aden_fe/module/presentation/argument/payment_argument.dart';
 import 'package:aden_fe/module/presentation/view/payment/cubit/payment_cubit.dart';
 import 'package:aden_fe/module/presentation/widget/button_widget.dart';
 import 'package:aden_fe/module/presentation/widget/loading_widget.dart';
@@ -11,14 +13,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theme/text_theme.dart';
 
 class PaymenView extends StatelessWidget {
-  const PaymenView({super.key});
+  PaymenView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final argument = ModalRoute.of(context)!.settings.arguments as String;
-
+    final PaymentArgument args =
+        ModalRoute.of(context)!.settings.arguments as PaymentArgument;
+    print(args.id);
     return BlocProvider(
-      create: (context) => getIt<PaymentCubit>()..initial(argument),
+      create: (context) => getIt<PaymentCubit>()..initial(args.id.toString()),
       child: Builder(
         builder: (context) => _build(context),
       ),
@@ -39,15 +42,15 @@ class PaymenView extends StatelessWidget {
           return state.maybeWhen(
             orElse: () => Container(),
             loading: () => LoadingWidget(),
-            loaded: (data) => _loaded(context),
-            initial: () => _loaded(context),
+            loaded: (data) => _loaded(context, data),
+            initial: () => LoadingWidget(),
           );
         },
       ),
     );
   }
 
-  Widget _loaded(BuildContext context) {
+  Widget _loaded(BuildContext context, GetOrderDetailEntities data) {
     return Container(
       padding: EdgeInsets.all(20),
       child: Column(
@@ -72,9 +75,10 @@ class PaymenView extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Text("Amount : Rp. 100.000"),
-          Text(
-              "Note : Please Pay with QRIS with amount of 100.000, then click on button below"),
+          Text("Amount : Rp. " + data.total.toString()),
+          Text("Note : Please Pay with QRIS with amount of " +
+              data.total.toString() +
+              ", then click on button below"),
           Spacer(),
           ButtonWidget(
             text: "Make Payment",

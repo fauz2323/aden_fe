@@ -14,6 +14,6 @@ class RouteHelper {
     '/register': (context) => RegisterView(),
     '/home': (context) => HomeView(),
     '/food-detail': (context) => const FoodDetailView(),
-    '/payment': (context) => const PaymenView(),
+    '/payment': (context) => PaymenView(),
   };
 }

@@ -1,8 +1,7 @@
-import 'dart:ffi';
-
 import 'package:aden_fe/module/domain/entities/user_cart_entities.dart';
 import 'package:aden_fe/module/domain/usecases/order/get_cart_usecase.dart';
 import 'package:aden_fe/module/domain/usecases/order/make_order_usecase.dart';
+import 'package:aden_fe/module/presentation/argument/make_order_argument.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -45,7 +44,7 @@ class CartCubit extends Cubit<CartState> {
     );
   }
 
-  Future<Map> makeOrder() async {
+  Future<MakeOrderArgument> makeOrder() async {
     emit(CartState.loading());
     final result = await makeOrderUsecase.call(token);
     return result.fold(
@@ -53,14 +52,15 @@ class CartCubit extends Cubit<CartState> {
         print(l.code);
         if (l.code == 401) {
           emit(CartState.unauthorized());
-          return {"message": l.message, "code": l.code};
+          return MakeOrderArgument(message: l.message, code: l.code, id: 0);
         }
         emit(CartState.loaded(userCart, total));
-        return {"message": l.message, "code": l.code};
+        return MakeOrderArgument(message: l.message, code: l.code, id: 0);
       },
       (r) {
-        emit(CartState.payment());
-        return {"message": r.message, "code": r.id};
+        emit(CartState.loaded(userCart, total));
+        print([r.id, r.message, r.status]);
+        return MakeOrderArgument(message: r.message, code: 200, id: r.id);
       },
     );
   }

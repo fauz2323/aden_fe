@@ -22,5 +22,19 @@ class PaymentCubit extends Cubit<PaymentState> {
     emit(PaymentState.loading());
     token = await TokenHelper().getToken();
     final result = await getDetailOrderUseCase.call(token, id);
+
+    return result.fold(
+      (l) {
+        print(l.code);
+        if (l.code == 401) {
+          emit(PaymentState.unauthorized());
+          return;
+        }
+        emit(PaymentState.error());
+      },
+      (r) {
+        emit(PaymentState.loaded(r));
+      },
+    );
   }
 }

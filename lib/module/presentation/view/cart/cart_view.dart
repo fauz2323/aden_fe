@@ -1,5 +1,6 @@
 import 'package:aden_fe/core/helper/token_helper.dart';
 import 'package:aden_fe/module/domain/entities/user_cart_entities.dart';
+import 'package:aden_fe/module/presentation/argument/payment_argument.dart';
 import 'package:aden_fe/module/presentation/widget/loading_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,6 @@ class CartView extends StatelessWidget {
               Navigator.pushNamedAndRemoveUntil(
                   context, '/login', (route) => false);
             },
-            payment: () => Navigator.pushNamed(context, '/payment'),
           );
         },
         builder: (context, state) {
@@ -153,11 +153,19 @@ class CartView extends StatelessWidget {
 
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text(message['message']),
+                  content: Text(message.message),
                 ),
               );
-              Navigator.pushNamed(context, "/payment",
-                  arguments: message['id'].toString());
+              print(message.id);
+
+              if (message.code == 200) {
+                if (!context.mounted) return;
+                Navigator.pushNamed(
+                  context,
+                  "/payment",
+                  arguments: PaymentArgument(id: message.id),
+                );
+              }
             },
           ),
         ],
