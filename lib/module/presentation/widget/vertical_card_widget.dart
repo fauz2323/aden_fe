@@ -46,6 +46,7 @@ class VerticalCardWidget extends StatelessWidget {
             Text(
               title,
               style: TextThemes.spanBold,
+              overflow: TextOverflow.ellipsis,
             ),
             Text(
               "Rp. " + price.toString(),

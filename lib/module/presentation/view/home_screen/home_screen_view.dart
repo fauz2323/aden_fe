@@ -43,7 +43,11 @@ class HomeScreenView extends StatelessWidget {
         },
         builder: (context, state) {
           return state.maybeWhen(
-            orElse: () => Container(),
+            orElse: () => Container(
+              child: Center(
+                child: Text("error......"), //LoadingWidget(),
+              ),
+            ),
             loaded: (foodData, catData) => loaded(context, catData, foodData),
             loading: () => LoadingWidget(),
           );

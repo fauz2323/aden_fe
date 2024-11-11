@@ -47,9 +47,10 @@ class CartCubit extends Cubit<CartState> {
   Future<MakeOrderArgument> makeOrder() async {
     emit(CartState.loading());
     final result = await makeOrderUsecase.call(token);
+
     return result.fold(
       (l) {
-        print(l.code);
+        print([l.code, l.message]);
         if (l.code == 401) {
           emit(CartState.unauthorized());
           return MakeOrderArgument(message: l.message, code: l.code, id: 0);

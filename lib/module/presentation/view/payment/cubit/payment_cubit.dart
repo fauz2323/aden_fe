@@ -26,6 +26,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     return result.fold(
       (l) {
         print(l.code);
+        print(l.message);
         if (l.code == 401) {
           emit(PaymentState.unauthorized());
           return;
