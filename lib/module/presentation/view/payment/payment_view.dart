@@ -84,7 +84,17 @@ class PaymenView extends StatelessWidget {
             text: "Make Payment",
             height: 45,
             width: SizeHelper.getWidth(context) * 0.9,
-            onTap: () {},
+            onTap: () async {
+              String message = await context.read<PaymentCubit>().makePayment();
+
+              Navigator.pop(context);
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(message),
+                ),
+              );
+            },
           )
         ],
       ),

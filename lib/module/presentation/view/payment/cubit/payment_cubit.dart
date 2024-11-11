@@ -38,4 +38,26 @@ class PaymentCubit extends Cubit<PaymentState> {
       },
     );
   }
+
+  Future<String> makePayment() async {
+    emit(PaymentState.loading());
+    final result = await makePaymentUsecase.call(token);
+
+    return result.fold(
+      (l) {
+        print(l.code);
+        print(l.message);
+        if (l.code == 401) {
+          emit(PaymentState.unauthorized());
+          return "Payment Error";
+        }
+        emit(PaymentState.error());
+
+        return "Payment Error";
+      },
+      (r) {
+        return "Payment Success, Please wait for submitting admin";
+      },
+    );
+  }
 }

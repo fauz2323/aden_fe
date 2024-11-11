@@ -70,7 +70,7 @@ class OrderDomainRepositoryImpl implements OrderRepository {
 
   @override
   Future<Either<Failure, MakePaymentEntities>> makePayment(String token) async {
-    final result = await orderRemoteDatasource.makeOrder(token);
+    final result = await orderRemoteDatasource.makePayment(token);
     return result.fold(
       (l) => Left(l),
       (r) {

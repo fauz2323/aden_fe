@@ -1,7 +1,7 @@
 import 'package:http/http.dart';
 
 class ApiHelper {
-  static String baseUrl = "https://omqajuxow9.sharedwithexpose.com";
+  static String baseUrl = "https://amr2csow94.sharedwithexpose.com";
   static String apiVer = '/api/v1';
 
   static Uri login = Uri.parse("$baseUrl$apiVer/login");
