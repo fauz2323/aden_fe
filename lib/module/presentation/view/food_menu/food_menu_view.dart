@@ -14,8 +14,10 @@ class FoodMenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)?.settings.arguments ?? '-';
+    print(args);
     return BlocProvider(
-      create: (context) => getIt<FoodMenuCubit>()..initial(),
+      create: (context) => getIt<FoodMenuCubit>()..initial(args as String),
       child: Builder(
         builder: (context) => _build(context),
       ),
@@ -38,7 +40,10 @@ class FoodMenuView extends StatelessWidget {
         return state.maybeWhen(
           orElse: () => Container(),
           loaded: (food) => loaded(context, food),
-          loading: () => LoadingWidget(),
+          loading: () => Container(
+            color: Colors.white,
+            child: LoadingWidget(),
+          ),
         );
       },
     );

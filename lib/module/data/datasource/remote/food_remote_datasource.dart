@@ -12,6 +12,8 @@ import 'package:http/http.dart' as http;
 abstract class FoodRemoteDataSource {
   Future<Either<Failure, ListCategoryModel>> getCategory(String token);
   Future<Either<Failure, ListFoodModel>> getFood(String token);
+  Future<Either<Failure, ListFoodModel>> getFoodByCategory(
+      String token, String category);
   Future<Either<Failure, FoodUuidModel>> getFoodByUuid(
       String token, String uuid);
 }
@@ -99,5 +101,36 @@ class FoodRemoteDataSourceImpl implements FoodRemoteDataSource {
     }
 
     return Right(FoodUuidModel.fromJson(jsonDecode(request.body)));
+  }
+
+  @override
+  Future<Either<Failure, ListFoodModel>> getFoodByCategory(
+      String token, String category) async {
+    Map body = {
+      'category': category,
+    };
+    final request = await http
+        .post(
+          ApiHelper.getFoodByCategory,
+          body: body,
+          headers: ApiHelper.getHeaderPost(token),
+        )
+        .timeout(
+          Duration(seconds: 10),
+          onTimeout: () => ApiHelper.timeOutException(),
+        );
+
+    print(request.statusCode);
+
+    if (request.statusCode != 200) {
+      return Left(
+        Failure(
+          message: '-',
+          code: request.statusCode,
+        ),
+      );
+    }
+
+    return Right(ListFoodModel.fromJson(jsonDecode(request.body)));
   }
 }

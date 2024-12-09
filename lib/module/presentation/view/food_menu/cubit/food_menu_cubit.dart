@@ -1,4 +1,5 @@
 import 'package:aden_fe/module/domain/entities/list_food_entities.dart';
+import 'package:aden_fe/module/domain/usecases/food/food_by_category_usecase.dart';
 import 'package:aden_fe/module/domain/usecases/food/list_food_usecase.dart';
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -13,15 +14,22 @@ part 'food_menu_cubit.freezed.dart';
 class FoodMenuCubit extends Cubit<FoodMenuState> {
   FoodMenuCubit(
     this.listFoodUseCase,
+    this.listFoodByCategoryUseCase,
   ) : super(FoodMenuState.loading());
   final ListFoodUseCase listFoodUseCase;
+  final ListFoodByCategoryUseCase listFoodByCategoryUseCase;
 
   late final token;
 
-  initial() async {
+  initial(String category) async {
     token = await TokenHelper().getToken();
+    var request;
 
-    final request = await listFoodUseCase.call(token);
+    if (category == '-') {
+      request = await listFoodUseCase.call(token);
+    } else {
+      request = await listFoodByCategoryUseCase.call(token, category);
+    }
 
     request.fold(
       (l) {

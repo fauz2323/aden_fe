@@ -1,6 +1,7 @@
 import 'package:aden_fe/core/error/failure_core.dart';
 import 'package:aden_fe/module/data/datasource/remote/order_remote_datasource.dart';
 import 'package:aden_fe/module/domain/entities/add_cart_entities.dart';
+import 'package:aden_fe/module/domain/entities/get_all_order_entities.dart';
 import 'package:aden_fe/module/domain/entities/get_order_Detail_entities.dart';
 import 'package:aden_fe/module/domain/entities/make_payment_entities.dart';
 import 'package:aden_fe/module/domain/entities/order_entities.dart';
@@ -100,6 +101,30 @@ class OrderDomainRepositoryImpl implements OrderRepository {
         );
 
         return Right(getOrderDetailEntities);
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, List<GetAllOrderEntities>>> getAllOrder(
+      String token) async {
+    final data = await orderRemoteDatasource.getAllOrder(token);
+
+    return data.fold(
+      (l) => Left(l),
+      (r) {
+        List<GetAllOrderEntities> list = r.orders
+            .map(
+              (e) => GetAllOrderEntities(
+                status: e.status,
+                orderList: e.orderList,
+                price: e.totalPrice,
+                date: e.createdAt,
+              ),
+            )
+            .toList();
+
+        return Right(list);
       },
     );
   }

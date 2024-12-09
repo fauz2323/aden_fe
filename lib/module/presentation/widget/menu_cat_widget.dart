@@ -9,43 +9,48 @@ class MenuCatWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.url,
+    required this.onTap,
   });
   final String title;
   final String url;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 80,
-          height: 80,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.green,
-              width: 4,
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            width: 80,
+            height: 80,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.green,
+                width: 4,
+              ),
+              borderRadius: BorderRadius.circular(50),
             ),
-            borderRadius: BorderRadius.circular(50),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: CachedNetworkImage(
-              imageUrl: url,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        SizedBox(
-          width: SizeHelper.getWidth(context) * 0.3,
-          child: Center(
-            child: Text(
-              title,
-              overflow: TextOverflow.ellipsis,
-              style: TextThemes.h5.merge(TextStyle(color: Colors.green)),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: CachedNetworkImage(
+                imageUrl: url,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
-        )
-      ],
+          SizedBox(
+            width: SizeHelper.getWidth(context) * 0.3,
+            child: Center(
+              child: Text(
+                title,
+                overflow: TextOverflow.ellipsis,
+                style: TextThemes.h5.merge(TextStyle(color: Colors.green)),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

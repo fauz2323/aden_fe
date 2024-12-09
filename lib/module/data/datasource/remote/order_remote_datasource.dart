@@ -4,6 +4,7 @@ import 'package:aden_fe/core/error/failure_core.dart';
 import 'package:aden_fe/module/data/model/add_cart_model.dart';
 import 'package:aden_fe/module/data/model/get_detail_order_model.dart';
 import 'package:aden_fe/module/data/model/make_payment_model.dart';
+import 'package:aden_fe/module/data/model/order_list_model.dart';
 import 'package:aden_fe/module/data/model/order_model.dart';
 import 'package:aden_fe/module/data/model/user_cart_model.dart';
 import 'package:dartz/dartz.dart';
@@ -20,6 +21,7 @@ abstract class OrderRemoteDatasource {
   Future<Either<Failure, GetDetailOrderModel>> getDetailOrder(
       String token, String id);
   Future<Either<Failure, MakePaymentModel>> makePayment(String token);
+  Future<Either<Failure, OrderListModel>> getAllOrder(String token);
 }
 
 @Injectable()
@@ -155,5 +157,31 @@ class OrderRemoteDatasourceImpl implements OrderRemoteDatasource {
     }
 
     return right(GetDetailOrderModel.fromJson(jsonDecode(request.body)));
+  }
+
+  @override
+  Future<Either<Failure, OrderListModel>> getAllOrder(String token) async {
+    final request = await http
+        .get(
+          ApiHelper.getAllOrder,
+          headers: ApiHelper.getHeaderGet(token),
+        )
+        .timeout(
+          Duration(seconds: 10),
+          onTimeout: () => ApiHelper.timeOutException(),
+        );
+
+    print(request.body);
+
+    if (request.statusCode != 200) {
+      return left(
+        Failure(
+          message: jsonDecode(request.body)['message'],
+          code: request.statusCode,
+        ),
+      );
+    }
+
+    return right(OrderListModel.fromJson(jsonDecode(request.body)));
   }
 }

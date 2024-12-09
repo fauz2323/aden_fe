@@ -90,4 +90,34 @@ class FoodDomainRepositoryImpl implements FoodRepository {
       },
     );
   }
+
+  @override
+  Future<Either<Failure, ListFoodEntities>> getFoodsByCategory(
+      String token, String category) async {
+    final data =
+        await foodRemoteDataSourceImpl.getFoodByCategory(token, category);
+    return data.fold((l) => Left(l), (r) {
+      ListFoodEntities toEntities() => ListFoodEntities(
+            message: r.message,
+            listFood: r.foods
+                .map(
+                  (e) => FoodEntities(
+                    name: e.name,
+                    uuid: e.uuid,
+                    price: e.price,
+                    description: e.description,
+                    status: e.status,
+                    stock: e.stock,
+                    date: e.createdAt,
+                    image: e.image,
+                    category: e.category.name,
+                    categorySlug: e.category.slug,
+                  ),
+                )
+                .toList(),
+          );
+
+      return Right(toEntities());
+    });
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:aden_fe/core/error/failure_core.dart';
 import 'package:aden_fe/module/data/datasource/remote/auth_remote_datasource.dart';
 import 'package:aden_fe/module/domain/entities/login_entities.dart';
+import 'package:aden_fe/module/domain/entities/profile_entities.dart';
 import 'package:aden_fe/module/domain/entities/register_entities.dart';
 import 'package:aden_fe/module/domain/repositories/auth_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -35,6 +36,23 @@ class AuthDomainRepositoryImpl implements AuthRepository {
       (l) => Left(l),
       (r) => Right(
         r.toEntity(),
+      ),
+    );
+  }
+
+  @override
+  Future<Either<Failure, ProfileEntities>> auth(String token) async {
+    final data = await authRemoteDatasourceImpl.auth(token);
+
+    return data.fold(
+      (l) => Left(l),
+      (r) => Right(
+        ProfileEntities(
+          name: r.user.name,
+          email: r.user.email,
+          phone: r.user.phone,
+          type: r.user.type,
+        ),
       ),
     );
   }

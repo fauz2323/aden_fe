@@ -165,6 +165,11 @@ class HomeScreenView extends StatelessWidget {
                   children: categoryEntities.listCategoryEntities
                       .map(
                         (e) => MenuCatWidget(
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            '/food-menu',
+                            arguments: e.name,
+                          ),
                           title: e.name,
                           url:
                               "https://firebasestorage.googleapis.com/v0/b/aden-ab505.appspot.com/o/" +

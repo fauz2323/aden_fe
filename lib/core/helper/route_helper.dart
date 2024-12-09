@@ -3,7 +3,9 @@ import 'package:aden_fe/module/presentation/view/home/home_view.dart';
 import 'package:aden_fe/module/presentation/view/register/register_view.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../module/presentation/view/food_menu/food_menu_view.dart';
 import '../../module/presentation/view/login/login_view.dart';
+import '../../module/presentation/view/my_order/my_order_view.dart';
 import '../../module/presentation/view/payment/payment_view.dart';
 import '../../module/presentation/view/splash/splash_view.dart';
 
@@ -15,5 +17,7 @@ class RouteHelper {
     '/home': (context) => HomeView(),
     '/food-detail': (context) => const FoodDetailView(),
     '/payment': (context) => PaymenView(),
+    '/my-order': (context) => const MyOrderView(),
+    '/food-menu': (context) => const FoodMenuView(),
   };
 }

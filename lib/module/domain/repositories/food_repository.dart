@@ -6,5 +6,7 @@ import 'package:dartz/dartz.dart';
 abstract class FoodRepository {
   Future<Either<Failure, ListCategoryEntities>> getCategories(String token);
   Future<Either<Failure, ListFoodEntities>> getFoods(String token);
+  Future<Either<Failure, ListFoodEntities>> getFoodsByCategory(
+      String token, String category);
   Future<Either<Failure, FoodEntities>> getFoodsUuid(String token, String Uuid);
 }
