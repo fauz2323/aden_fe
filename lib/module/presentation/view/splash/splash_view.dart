@@ -52,7 +52,10 @@ class SplashView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Spacer(),
-          Text("Ini Logo"),
+          Image.asset(
+            'assets/images/rimbun.jpg',
+            width: 200,
+          ),
           Spacer(),
         ],
       ),
